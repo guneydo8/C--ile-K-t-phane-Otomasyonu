@@ -1,0 +1,35 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<Tblİşlemler>
+@{
+    ViewBag.Title = "ÜyeKitap";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+
+        <th>KİTAP ADI</th>
+        <th>ALIŞ TARIHI</th>
+        <th>AZAMI TESLIM</th>
+        <th>IADE TARIHI</th>
+       
+
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td>@x.TblKitaplar.Ad</td>
+            <td>@Convert.ToDateTime(x.AlışTarihi).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(x.TeslimTarihi).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(x.İadeTarihi).ToString("dd/MM/yyyy")</td>
+            
+            
+
+
+        </tr>
+    }
+</table>
+

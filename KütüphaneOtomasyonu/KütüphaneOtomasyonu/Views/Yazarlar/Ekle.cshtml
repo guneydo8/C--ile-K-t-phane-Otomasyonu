@@ -1,0 +1,23 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblYazar
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+<form class="form-group" method="post">
+    <label style="color:red">Yazar Adı</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Ad,"", new { @style="color:blue"})
+    <br />
+    <label style="color:red">Yazar Soyadı</label>
+    @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Soyad,"", new { @style="color:blue"})
+    <br />
+    <label style="color:red">Açıklama</label>
+    @Html.TextAreaFor(x => x.Açıklama, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" style="background-color:saddlebrown">Kaydet</button>
+</form>
+

@@ -1,0 +1,44 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblÜyeler
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<br />
+
+<form class="form-group" method="post">
+    <label style="color:red">Ad</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Ad, "", new { @style = "color:forestgreen" })
+
+    <br />
+    <label style="color:red">Soyad</label>
+    @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Soyad, "", new { @style = "color:forestgreen" })
+    <br />
+    <label style="color:red">Mail</label>
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "color:forestgreen" })
+    <br />
+    <label style="color:red">Kullanıcı Adı</label>
+    @Html.TextBoxFor(x => x.KullanıcıAd, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.KullanıcıAd, "", new { @style = "color:forestgreen" })
+    <br />
+    <label style="color:red">Şifre</label>
+    @Html.TextBoxFor(x => x.Şifre, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Şifre, "", new { @style = "color:forestgreen" })
+    <br />
+    <label style="color:red">Telefon</label>
+    @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Okul</label>
+    @Html.TextBoxFor(x => x.Okul, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Fotoğraf Url</label>
+    @Html.TextBoxFor(x => x.Fotoğraf, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" style="background-color:saddlebrown">Kaydet</button>
+</form>
+
+

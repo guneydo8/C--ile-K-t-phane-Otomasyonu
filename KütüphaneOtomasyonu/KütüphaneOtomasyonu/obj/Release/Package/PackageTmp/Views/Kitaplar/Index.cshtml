@@ -1,0 +1,66 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<TblKitaplar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    string renk = "";
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+@using (Html.BeginForm("Index", "Kitaplar", FormMethod.Get))
+{
+    <br />
+    <b>Kitap Ara    </b>@Html.TextBox("x");
+    <input type="submit" value="Ara" class="btn btn-primary" style="background-color:black" />
+}
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>KİTAP ID</th>
+        <th>KİTAP ADI</th>
+        <th>KATEGORİ</th>
+        <th>YAZAR</th>
+        <th>BASIM YILI</th>
+        <th>YAYIN EVİ</th>
+        <th>SAYFA SAYISI</th>
+        
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        if (x.Durum == false)
+        {
+            renk = "bg-danger text-white";
+        }
+
+        if (x.Durum == true)
+        {
+            renk = "bg-success text-white";
+        }
+
+
+
+        <tr class="@renk">
+            <td>@x.Id</td>
+            <td>@x.Ad</td>
+            <td>@x.TblKategoriler.KategoriAd</td>
+            <td>@x.TblYazar.Ad @x.TblYazar.Soyad</td>
+            <td>@x.BasımYılı</td>
+            <td>@x.YayınEvi</td>
+            <td>@x.SayfaSayısı</td>
+           
+            <td>
+                <a href="/Kitaplar/Sil/@x.Id" class="btn btn-danger" style="background-color:indigo" onclick="return confirm('Silmek İstiyor musunuz?')">Sil</a>
+                <a href="/Kitaplar/Güncelle/@x.Id" class="btn btn-success" style="background-color:black">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="/Kitaplar/Ekle/" class="btn btn-primary" style="background-color:teal">Yeni Kitap Ekle</a>

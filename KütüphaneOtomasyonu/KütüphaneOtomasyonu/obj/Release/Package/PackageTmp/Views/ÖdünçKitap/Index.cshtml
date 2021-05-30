@@ -1,0 +1,43 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<Tblİşlemler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>KİTAP</th>
+        <th>ÜYE</th>
+
+        <th>PERSONEL</th>
+        <th>ALIŞ TARİHİ</th>
+        <th>AZAMİ TESLİM</th>
+
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td>@x.TblKitaplar.Ad</td>
+            <td>@x.TblÜyeler.Ad @x.TblÜyeler.Soyad</td>
+            <td>@x.TblPersonel.AdSoyad</td>
+            <td>@Convert.ToDateTime(x.AlışTarihi).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(x.TeslimTarihi).ToString("dd/MM/yyyy")</td>
+
+            <td>
+
+               
+                <a href="/ÖdünçKitap/Kitapİade/@x.Id" class="btn btn-danger" style="background-color:indigo" onclick="return confirm('İade Almak İstiyor musunuz?')">Kitap İade</a>
+
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="/ÖdünçKitap/Ödünç/" class="btn btn-primary" style="background-color:teal">Ödünç Kitap Ver</a>
+

@@ -1,0 +1,30 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<TblDuyurular>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>DUYURU ID</th>
+        <th>KONU</th>
+        <th>IÇERIK</th>
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.Konu</td>
+            <td>@x.İçerik</td>
+
+            <td>
+                <a href="/Duyurular/Sil/@x.Id" class="btn btn-danger" style="background-color:indigo" onclick="return confirm('Silmek İstiyor musunuz?')">Sil</a>
+                <a href="/Duyurular/Güncelle/@x.Id" class="btn btn-success" style="background-color:black">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Duyurular/YeniDuyuru/" class="btn btn-success" style="background-color:#103a15">Duyuru Oluştur</a>

@@ -1,0 +1,19 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblDuyurular
+@{
+    ViewBag.Title = "Güncelle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("Güncelle2", "Duyurular", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <label style="color:red">Konu</label>
+    @Html.TextBoxFor(x => x.Konu, new { @class = "form-control" })
+    <br />
+    <label style="color:red">İçerik</label>
+    @Html.TextBoxFor(x => x.İçerik, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+}
+

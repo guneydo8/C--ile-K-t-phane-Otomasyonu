@@ -1,0 +1,39 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<TblDuyurular>
+
+@foreach (var x in Model)
+{
+
+
+    <div class="post">
+
+        <div class="user-block">
+
+         
+
+            <span class="username">
+
+                <a href="#">@x.Konu</a>
+
+                <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+
+            </span>
+
+            <span class="description">@x.Tarih</span>
+
+        </div>
+
+        <!-- /.user-block -->
+
+        <p>
+
+            @x.İçerik
+
+        </p>
+
+
+    </div>
+}
+
+
+

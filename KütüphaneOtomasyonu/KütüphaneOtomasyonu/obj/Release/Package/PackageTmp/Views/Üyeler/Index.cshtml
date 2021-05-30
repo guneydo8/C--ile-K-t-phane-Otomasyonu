@@ -1,0 +1,63 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<TblÜyeler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    string renk = "";
+}
+
+@using (Html.BeginForm("Index", "Üyeler", FormMethod.Get))
+{
+    <b>Üye Ara </b>@Html.TextBox("x");
+    <input type="submit" value="Ara" class="btn btn-danger" style="background-color:black" />
+}
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>ID</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>MAIL</th>
+        <th>KULLANICI ADI</th>
+        <th>SIFRE</th>
+        <th>TELEFON</th>
+        <th>OKUL</th>
+       
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        if (x.Durum == false)
+        {
+            renk = "bg-danger text-white";
+        }
+
+        if (x.Durum == true)
+        {
+            renk = "bg-success text-white";
+        }
+
+
+        <tr class="@renk">
+            <td>@x.Id</td>
+            <td>@x.Ad</td>
+            <td>@x.Soyad</td>
+            <td>@x.Mail</td>
+            <td>@x.KullanıcıAd</td>
+            <td>@x.Şifre</td>
+            <td>@x.Telefon</td>
+            <td>@x.Okul</td>
+           
+            <td>
+                <a href="/Üyeler/Sil/@x.Id" class="btn btn-danger" style="background-color:indigo" onclick="return confirm('Silmek İstiyor musunuz?')">Sil</a>
+                <a href="/Üyeler/Güncelle/@x.Id" class="btn btn-success" style="background-color:black">Güncelle</a> 
+                <a href="/Üyeler/ÜyeKitap/@x.Id" class="btn btn-success" style="background-color:#85023b">Kitap Geçmişi</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="/Üyeler/Ekle/" class="btn btn-primary" style="background-color:teal">Yeni Üye Girişi</a>
+

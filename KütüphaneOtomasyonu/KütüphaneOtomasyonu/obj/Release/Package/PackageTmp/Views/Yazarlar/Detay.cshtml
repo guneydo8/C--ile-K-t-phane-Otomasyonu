@@ -1,0 +1,28 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@model List<TblKitaplar>
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<h2>Yazar: @ViewBag.yzr</h2>
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        
+        <th>KİTAP ADI</th>
+        <th>KATEGORİ</th>
+        
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+           
+            <td>@x.Ad</td>
+            <td>@x.TblKategoriler.KategoriAd</td>
+            
+       
+        </tr>
+    }
+</table>
+

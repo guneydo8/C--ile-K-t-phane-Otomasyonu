@@ -1,0 +1,36 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblKitaplar
+@{
+    ViewBag.Title = "Güncelle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+@using (Html.BeginForm("Güncelle2", "Kitaplar", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.Id)
+    <label style="color:red">Kitap Adı</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Kategori</label>
+    @Html.DropDownListFor(x => x.TblKategoriler.Id, (List<SelectListItem>)ViewBag.ktgr, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Kategori</label>
+    @Html.DropDownListFor(x => x.TblYazar.Id, (List<SelectListItem>)ViewBag.yzr, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Basım Yılı</label>
+    @Html.TextBoxFor(x => x.BasımYılı, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Yayın Evi</label>
+    @Html.TextBoxFor(x => x.YayınEvi, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Sayfa Sayısı</label>
+    @Html.TextBoxFor(x => x.SayfaSayısı, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Durum</label>
+    @Html.TextBoxFor(x => x.Durum, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" style="background-color:saddlebrown">Güncelle</button>
+}
+
+

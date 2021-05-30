@@ -1,0 +1,18 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblPersonel
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<br />
+
+<form class="form-group" method="post">
+    <label style="color:red">Personel</label>
+    @Html.TextBoxFor(x => x.AdSoyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AdSoyad, "", new { @style="color:blue"})
+    <br />
+   
+    <button class="btn btn-info" style="background-color:saddlebrown">Kaydet</button>
+</form>
+

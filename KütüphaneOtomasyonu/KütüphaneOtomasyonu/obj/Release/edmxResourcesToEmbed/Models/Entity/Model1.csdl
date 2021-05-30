@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcKütüphaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TblKasa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tutar" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="TblKategoriler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblKitaplar" Relationship="Self.FK_TblKitaplar_TblKategoriler" FromRole="TblKategoriler" ToRole="TblKitaplar" />
+    <Property Name="Durum" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TblKitaplar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Kategori" Type="Int32" />
+    <Property Name="Yazar" Type="Int32" />
+    <Property Name="BasımYılı" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="YayınEvi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SayfaSayısı" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="Durum" Type="Boolean" />
+    <NavigationProperty Name="TblKategoriler" Relationship="Self.FK_TblKitaplar_TblKategoriler" FromRole="TblKitaplar" ToRole="TblKategoriler" />
+    <NavigationProperty Name="TblYazar" Relationship="Self.FK_TblKitaplar_TblYazar" FromRole="TblKitaplar" ToRole="TblYazar" />
+    <Property Name="Görsel" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tblİşlemler" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblKitaplar" FromRole="TblKitaplar" ToRole="Tblİşlemler" />
+  </EntityType>
+  <EntityType Name="TblPersonel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tblİşlemler" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblPersonel" FromRole="TblPersonel" ToRole="Tblİşlemler" />
+  </EntityType>
+  <EntityType Name="TblYazar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Açıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblKitaplar" Relationship="Self.FK_TblKitaplar_TblYazar" FromRole="TblYazar" ToRole="TblKitaplar" />
+    <Property Name="Fotoğraf" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_TblKitaplar_TblKategoriler">
+    <End Role="TblKategoriler" Type="Self.TblKategoriler" Multiplicity="0..1" />
+    <End Role="TblKitaplar" Type="Self.TblKitaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKategoriler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblKitaplar">
+        <PropertyRef Name="Kategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblKitaplar_TblYazar">
+    <End Role="TblYazar" Type="Self.TblYazar" Multiplicity="0..1" />
+    <End Role="TblKitaplar" Type="Self.TblKitaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblYazar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblKitaplar">
+        <PropertyRef Name="Yazar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcKütüphaneEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TblKasa" EntityType="Self.TblKasa" />
+    <EntitySet Name="TblKategoriler" EntityType="Self.TblKategoriler" />
+    <EntitySet Name="TblKitaplar" EntityType="Self.TblKitaplar" />
+    <EntitySet Name="TblPersonel" EntityType="Self.TblPersonel" />
+    <EntitySet Name="TblYazar" EntityType="Self.TblYazar" />
+    <AssociationSet Name="FK_TblKitaplar_TblKategoriler" Association="Self.FK_TblKitaplar_TblKategoriler">
+      <End Role="TblKategoriler" EntitySet="TblKategoriler" />
+      <End Role="TblKitaplar" EntitySet="TblKitaplar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblKitaplar_TblYazar" Association="Self.FK_TblKitaplar_TblYazar">
+      <End Role="TblYazar" EntitySet="TblYazar" />
+      <End Role="TblKitaplar" EntitySet="TblKitaplar" />
+    </AssociationSet>
+    <EntitySet Name="TblHakkımızda" EntityType="MvcKütüphaneModel.TblHakkımızda" />
+    <EntitySet Name="Tblİletişim" EntityType="MvcKütüphaneModel.Tblİletişim" />
+    <FunctionImport Name="maxkitaplıyazar" ReturnType="Collection(String)" />
+    <FunctionImport Name="enbasarılıpersonel" ReturnType="Collection(String)" />
+    <FunctionImport Name="enaktifüye" ReturnType="Collection(String)" />
+    <FunctionImport Name="encokokunankitap" ReturnType="Collection(String)" />
+    <EntitySet Name="TblMesajlar" EntityType="MvcKütüphaneModel.TblMesajlar" />
+    <EntitySet Name="TblCezalar" EntityType="MvcKütüphaneModel.TblCezalar" />
+    <EntitySet Name="Tblİşlemler" EntityType="MvcKütüphaneModel.Tblİşlemler" />
+    <AssociationSet Name="FK_TblCezalar_Tblİşlemler" Association="MvcKütüphaneModel.FK_TblCezalar_Tblİşlemler">
+      <End Role="Tblİşlemler" EntitySet="Tblİşlemler" />
+      <End Role="TblCezalar" EntitySet="TblCezalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tblİşlemler_TblKitaplar" Association="MvcKütüphaneModel.FK_Tblİşlemler_TblKitaplar">
+      <End Role="TblKitaplar" EntitySet="TblKitaplar" />
+      <End Role="Tblİşlemler" EntitySet="Tblİşlemler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tblİşlemler_TblPersonel" Association="MvcKütüphaneModel.FK_Tblİşlemler_TblPersonel">
+      <End Role="TblPersonel" EntitySet="TblPersonel" />
+      <End Role="Tblİşlemler" EntitySet="Tblİşlemler" />
+    </AssociationSet>
+    <EntitySet Name="TblDuyurular" EntityType="MvcKütüphaneModel.TblDuyurular" />
+    <EntitySet Name="sysdiagrams" EntityType="MvcKütüphaneModel.sysdiagrams" />
+    <EntitySet Name="TblÜyeler" EntityType="MvcKütüphaneModel.TblÜyeler" />
+    <AssociationSet Name="FK_TblCezalar_TblÜyeler" Association="MvcKütüphaneModel.FK_TblCezalar_TblÜyeler">
+      <End Role="TblÜyeler" EntitySet="TblÜyeler" />
+      <End Role="TblCezalar" EntitySet="TblCezalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tblİşlemler_TblÜyeler" Association="MvcKütüphaneModel.FK_Tblİşlemler_TblÜyeler">
+      <End Role="TblÜyeler" EntitySet="TblÜyeler" />
+      <End Role="Tblİşlemler" EntitySet="Tblİşlemler" />
+    </AssociationSet>
+    <EntitySet Name="TblAdmin" EntityType="MvcKütüphaneModel.TblAdmin" />
+  </EntityContainer>
+  <EntityType Name="TblHakkımızda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Açıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tblİletişim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Konu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TblMesajlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gönderen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Alıcı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mesaj" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="TblCezalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Üye" Type="Int32" />
+    <Property Name="İşlem" Type="Int32" />
+    <Property Name="Başlangıç" Type="DateTime" Precision="0" />
+    <Property Name="Bitiş" Type="DateTime" Precision="0" />
+    <Property Name="Para" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Tblİşlemler" Relationship="MvcKütüphaneModel.FK_TblCezalar_Tblİşlemler" FromRole="TblCezalar" ToRole="Tblİşlemler" />
+    <NavigationProperty Name="TblÜyeler" Relationship="MvcKütüphaneModel.FK_TblCezalar_TblÜyeler" FromRole="TblCezalar" ToRole="TblÜyeler" />
+  </EntityType>
+  <EntityType Name="Tblİşlemler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kitap" Type="Int32" />
+    <Property Name="Üye" Type="Int32" />
+    <Property Name="Personel" Type="Int32" />
+    <Property Name="AlışTarihi" Type="DateTime" Precision="0" />
+    <Property Name="TeslimTarihi" Type="DateTime" Precision="0" />
+    <Property Name="İadeTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Durum" Type="Boolean" />
+    <NavigationProperty Name="TblCezalar" Relationship="MvcKütüphaneModel.FK_TblCezalar_Tblİşlemler" FromRole="Tblİşlemler" ToRole="TblCezalar" />
+    <NavigationProperty Name="TblKitaplar" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblKitaplar" FromRole="Tblİşlemler" ToRole="TblKitaplar" />
+    <NavigationProperty Name="TblPersonel" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblPersonel" FromRole="Tblİşlemler" ToRole="TblPersonel" />
+    <NavigationProperty Name="TblÜyeler" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblÜyeler" FromRole="Tblİşlemler" ToRole="TblÜyeler" />
+  </EntityType>
+  <Association Name="FK_TblCezalar_Tblİşlemler">
+    <End Type="MvcKütüphaneModel.Tblİşlemler" Role="Tblİşlemler" Multiplicity="0..1" />
+    <End Type="MvcKütüphaneModel.TblCezalar" Role="TblCezalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tblİşlemler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblCezalar">
+        <PropertyRef Name="İşlem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tblİşlemler_TblKitaplar">
+    <End Type="MvcKütüphaneModel.TblKitaplar" Role="TblKitaplar" Multiplicity="0..1" />
+    <End Type="MvcKütüphaneModel.Tblİşlemler" Role="Tblİşlemler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKitaplar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tblİşlemler">
+        <PropertyRef Name="Kitap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tblİşlemler_TblPersonel">
+    <End Type="MvcKütüphaneModel.TblPersonel" Role="TblPersonel" Multiplicity="0..1" />
+    <End Type="MvcKütüphaneModel.Tblİşlemler" Role="Tblİşlemler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblPersonel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tblİşlemler">
+        <PropertyRef Name="Personel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblDuyurular">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="İçerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblÜyeler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KullanıcıAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Şifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fotoğraf" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Okul" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Durum" Type="Boolean" />
+    <NavigationProperty Name="TblCezalar" Relationship="MvcKütüphaneModel.FK_TblCezalar_TblÜyeler" FromRole="TblÜyeler" ToRole="TblCezalar" />
+    <NavigationProperty Name="Tblİşlemler" Relationship="MvcKütüphaneModel.FK_Tblİşlemler_TblÜyeler" FromRole="TblÜyeler" ToRole="Tblİşlemler" />
+  </EntityType>
+  <Association Name="FK_TblCezalar_TblÜyeler">
+    <End Type="MvcKütüphaneModel.TblÜyeler" Role="TblÜyeler" Multiplicity="0..1" />
+    <End Type="MvcKütüphaneModel.TblCezalar" Role="TblCezalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblÜyeler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblCezalar">
+        <PropertyRef Name="Üye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tblİşlemler_TblÜyeler">
+    <End Type="MvcKütüphaneModel.TblÜyeler" Role="TblÜyeler" Multiplicity="0..1" />
+    <End Type="MvcKütüphaneModel.Tblİşlemler" Role="Tblİşlemler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblÜyeler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tblİşlemler">
+        <PropertyRef Name="Üye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TblAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Şifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+</Schema>

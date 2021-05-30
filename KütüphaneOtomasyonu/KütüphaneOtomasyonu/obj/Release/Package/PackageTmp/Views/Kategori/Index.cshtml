@@ -1,0 +1,32 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<TblKategoriler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>KATEGORI ID</th>
+        <th>KATEGORI AD</th>
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach(var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.KategoriAd</td>
+            <td>
+                <a href="/Kategori/Sil/@x.Id" class="btn btn-danger" style="background-color:indigo">Sil</a>
+                <a href="/Kategori/Güncelle/@x.Id" class="btn btn-success" style="background-color:black">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((Model), sayfa => Url.Action("Index",new{ sayfa}))
+
+<a href="/Kategori/Ekle/" class="btn btn-primary" style="background-color:teal">Yeni Kategori</a>
+

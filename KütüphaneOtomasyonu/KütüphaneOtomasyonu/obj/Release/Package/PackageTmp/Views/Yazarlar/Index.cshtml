@@ -1,0 +1,44 @@
+﻿@using KütüphaneOtomasyonu.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TblYazar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+   
+}
+
+<table class="table table-bordered">
+    <tr style="background-color:black;color:white">
+        <th>YAZAR ID</th>
+        <th>YAZAR ADI</th>
+        <th>YAZAR SOYADI</th>
+        <th>DETAY</th>
+        @*<th>AÇIKLAMA</th>*@
+        <th>IŞLEMLER</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.Ad</td>
+            <td>@x.Soyad</td>
+            @*<td>@x.Açıklama</td>*@
+        <td>
+            <a href="/Yazarlar/Hakkında/@x.Id" class="btn btn-success" style="background-color:forestgreen">Yazar Hakkında</a>
+            <a href="/Yazarlar/Detay/@x.Id" class="btn btn-success" style="background-color:orangered">Eserleri</a>
+        </td>
+            <td>
+                <a href="/Yazarlar/Sil/@x.Id" class="btn btn-danger" style="background-color:indigo" onclick="return confirm('Silmek İstiyor musunuz?')">Sil</a>
+                <a href="/Yazarlar/Güncelle/@x.Id" class="btn btn-success" style="background-color:black">Güncelle</a>
+               
+            </td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa}))
+
+<a href="/Yazarlar/Ekle/" class="btn btn-primary" style="background-color:teal">Yeni Yazar Ekle</a>
+

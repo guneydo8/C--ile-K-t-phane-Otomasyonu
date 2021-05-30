@@ -1,0 +1,40 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.Tblİşlemler
+@{
+    ViewBag.Title = "Kitapİade";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+@using (Html.BeginForm("Güncelle", "ÖdünçKitap", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <label style="color:red">Üye Ad Soyad</label>
+    @Html.TextBoxFor(x => x.TblÜyeler.Ad, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Kitap Adı</label>
+    @Html.TextBoxFor(x => x.TblKitaplar.Ad, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Personel Ad Soyad</label>
+    @Html.TextBoxFor(x => x.TblPersonel.AdSoyad, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Alış Tarihi</label>
+    @Html.TextBoxFor(x => x.AlışTarihi, "{0:dd.MM.yyyy }", new { @class = "form-control" })
+    <br />
+    <label style="color:red">Beklenen İade Tarihi</label>
+    @Html.TextBoxFor(x => x.TeslimTarihi, "{0:dd.MM.yyyy }", new { @class = "form-control" })
+    <br />
+    <label style="color:red">İade Tarihi</label>
+    <input type="text" class="form-control" name="İadeTarihi" value="@DateTime.Now.ToShortDateString()" />
+
+    <br />
+    <label style="color:red">Ceza Gün Sayısı</label>
+    <input type="text" value="@ViewBag.ceza" class="form-control" />
+    <br />
+
+
+
+    <button class="btn btn-info">Kitap İade</button>
+}
+
+

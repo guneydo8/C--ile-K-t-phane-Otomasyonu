@@ -1,0 +1,26 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.Tblİşlemler
+@{
+    ViewBag.Title = "Ödünç";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+<form class="form-group" method="post">
+
+    <label style="color:red">Üye</label>
+    @Html.DropDownListFor(x => x.TblÜyeler.Id, (List<SelectListItem>)ViewBag.deger1, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Kitap</label>
+    @Html.DropDownListFor(x => x.TblKitaplar.Id, (List<SelectListItem>)ViewBag.deger2, new { @class = "form-control" })
+    <br />
+    <label style="color:red">Personel</label>
+    @Html.DropDownListFor(x => x.TblPersonel.Id, (List<SelectListItem>)ViewBag.deger3, new { @class = "form-control" })
+    <br />
+   
+
+    <button class="btn btn-info" style="background-color:saddlebrown">Kaydet</button>
+</form>
+
+
+

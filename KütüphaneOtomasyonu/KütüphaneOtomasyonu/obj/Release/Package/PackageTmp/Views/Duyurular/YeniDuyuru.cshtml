@@ -1,0 +1,17 @@
+﻿@model KütüphaneOtomasyonu.Models.Entity.TblDuyurular
+@{
+    ViewBag.Title = "YeniDuyuru";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<br />
+
+<form class="form-group" method="post">
+    <label style="color:red">Konu</label>
+    @Html.TextBoxFor(x => x.Konu, new { @class = "form-control" })
+    <br />
+    <label style="color:red">İçerik</label>
+    @Html.TextBoxFor(x => x.İçerik, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info" style="background-color:saddlebrown">Oluştur</button>
+</form>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4f4fa9bb3dd248b58dafcc2d569c1db2" Name="Diagram1">
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblKasa" Width="1.5" PointX="9.375" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblKategoriler" Width="1.5" PointX="1.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblKitaplar" Width="1.5" PointX="6.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblPersonel" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblYazar" Width="1.5" PointX="1.5" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_TblKitaplar_TblKategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_TblKitaplar_TblYazar" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblHakkımızda" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.Tblİletişim" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblMesajlar" Width="1.5" PointX="8.75" PointY="3.125" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblCezalar" Width="1.5" PointX="13.25" PointY="4" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.Tblİşlemler" Width="1.5" PointX="11" PointY="3.5" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_TblCezalar_Tblİşlemler" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_Tblİşlemler_TblKitaplar" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_Tblİşlemler_TblPersonel" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblDuyurular" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblÜyeler" Width="2.25" PointX="0.625" PointY="4" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_TblCezalar_TblÜyeler" />
+        <AssociationConnector Association="MvcKütüphaneModel.FK_Tblİşlemler_TblÜyeler" />
+        <EntityTypeShape EntityType="MvcKütüphaneModel.TblAdmin" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
